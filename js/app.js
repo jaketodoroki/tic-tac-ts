@@ -24,7 +24,6 @@ const boardEl = document.querySelector('.board');
 init();
 boardEl.addEventListener('click', handleClick);
 resetBtnEl.addEventListener('click', init);
-// squareEls.forEach(square => square.addEventListener('click', handleClick))
 //--------Functions-----------
 function init() {
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0];

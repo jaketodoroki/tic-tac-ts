@@ -25,13 +25,10 @@ const messageEl = document.getElementById('message') as HTMLElement
 const resetBtnEl = document.getElementById('reset') as HTMLButtonElement
 const boardEl = document.querySelector<HTMLElement>('.board')!
 
-
 //--------Event Listeners--------
 init()
 boardEl.addEventListener('click', handleClick)
 resetBtnEl.addEventListener('click', init)
-
-// squareEls.forEach(square => square.addEventListener('click', handleClick))
 
 //--------Functions-----------
 
@@ -69,7 +66,6 @@ function updateBoard(){
     }
   })
 }
-
 
 function handleClick(evt: MouseEvent): void {
   if(!(evt.target instanceof HTMLElement)) return
