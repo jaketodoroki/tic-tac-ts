@@ -60,7 +60,7 @@ function handleClick(evt) {
     let sqIdx = parseInt(evt.target.id.slice(2));
     placePiece(sqIdx);
     // checkForTie()
-    // checkForWinner()
+    checkForWinner();
     switchPlayerTurn();
     render();
 }
@@ -71,4 +71,16 @@ function switchPlayerTurn() {
     if (winner === true || tie === true)
         return;
     turn *= -1;
+}
+function checkForWinner() {
+    winningCombos.forEach(combo => {
+        let total = 0;
+        combo.forEach(position => {
+            total += board[position];
+            if (Math.abs(total) === 3) {
+                winner = true;
+                return;
+            }
+        });
+    });
 }

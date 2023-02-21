@@ -70,7 +70,7 @@ function handleClick(evt: MouseEvent): void {
   let sqIdx: number = parseInt(evt.target.id.slice(2))
   placePiece(sqIdx)
   // checkForTie()
-  // checkForWinner()
+  checkForWinner()
   switchPlayerTurn()
   render()
 }
@@ -82,4 +82,17 @@ function placePiece(idx: number): void {
 function switchPlayerTurn(): void {
   if(winner === true || tie === true) return
   turn *= -1
+}
+
+function checkForWinner(): void {
+  winningCombos.forEach(combo => {
+    let total: number = 0
+    combo.forEach(position => {
+      total += board[position]
+      if (Math.abs(total) === 3) {
+        winner = true
+        return
+      }
+    })
+  })
 }
