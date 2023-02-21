@@ -1,6 +1,6 @@
 //---------Constants---------------
 
-const winningCombos: number[][] = [
+const winningCombos: number [][] = [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
@@ -20,43 +20,61 @@ let tie: boolean
 
 //-------Cached Element References---------
 
-const squareEls = document.querySelectorAll<HTMLButtonElement>('.sqr')
+const squareEls = document.querySelectorAll<HTMLDivElement>('.sqr')
 const messageEl = document.getElementById('message') as HTMLElement
 const resetBtnEl = document.querySelector<HTMLButtonElement>('#reset-button')!
-const boardEl = document.querySelector<HTMLDivElement>('.board')!
+const boardEl = document.querySelector<HTMLElement>('.board')!
 
 
 //--------Event Listeners--------
-
-resetBtnEl.addEventListener('click', init)
-
+init()
 boardEl.addEventListener('click', handleClick)
+// resetBtnEl.addEventListener('click', init)
 
+// squareEls.forEach(square => square.addEventListener('click', handleClick))
 
 //--------Functions-----------
 
 function init(): void {
-  board = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-  turn = 1
-  winner = false
-  tie = false
+  board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  turn = 1;
+  winner = false;
+  tie = false;
   render()
 }
 
-function render() {
-  // updateBoard()
+function render(): void {
+  updateBoard()
   // updateMessage()
+}
+
+
+
+function updateBoard(){
+  squareEls.forEach((square, idx) => {
+    if(board[idx] === 1) {
+      square.textContent = "O"
+    } else if (board[idx] === -1) {
+      square.textContent = "X"
+    } else if (board[idx] === 0) {
+      square.textContent = ""
+    }
+  })
 }
 
 
 function handleClick(evt: MouseEvent): void {
   if(!(evt.target instanceof HTMLElement)) return
   if (evt.target.textContent !== "") return
-  if(winner === true || tie === true) return
+  if (winner === true || tie === true) return
   let sqIdx: number = parseInt(evt.target.id.slice(2))
-  // placePiece(sqIdx)
+  placePiece(sqIdx)
   // checkForTie()
   // checkForWinner()
   // switchPlayerTurn()
   render()
+}
+
+function placePiece(idx: number): void {
+  board[idx] = turn
 }

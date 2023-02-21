@@ -21,8 +21,10 @@ const messageEl = document.getElementById('message');
 const resetBtnEl = document.querySelector('#reset-button');
 const boardEl = document.querySelector('.board');
 //--------Event Listeners--------
-resetBtnEl.addEventListener('click', init);
+init();
 boardEl.addEventListener('click', handleClick);
+// resetBtnEl.addEventListener('click', init)
+// squareEls.forEach(square => square.addEventListener('click', handleClick))
 //--------Functions-----------
 function init() {
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -32,8 +34,21 @@ function init() {
     render();
 }
 function render() {
-    // updateBoard()
+    updateBoard();
     // updateMessage()
+}
+function updateBoard() {
+    squareEls.forEach((square, idx) => {
+        if (board[idx] === 1) {
+            square.textContent = "O";
+        }
+        else if (board[idx] === -1) {
+            square.textContent = "X";
+        }
+        else if (board[idx] === 0) {
+            square.textContent = "";
+        }
+    });
 }
 function handleClick(evt) {
     if (!(evt.target instanceof HTMLElement))
@@ -43,9 +58,12 @@ function handleClick(evt) {
     if (winner === true || tie === true)
         return;
     let sqIdx = parseInt(evt.target.id.slice(2));
-    // placePiece(sqIdx)
+    placePiece(sqIdx);
     // checkForTie()
     // checkForWinner()
     // switchPlayerTurn()
     render();
+}
+function placePiece(idx) {
+    board[idx] = turn;
 }
