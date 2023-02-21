@@ -18,12 +18,12 @@ let tie;
 //-------Cached Element References---------
 const squareEls = document.querySelectorAll('.sqr');
 const messageEl = document.getElementById('message');
-const resetBtnEl = document.querySelector('#reset-button');
+const resetBtnEl = document.getElementById('reset');
 const boardEl = document.querySelector('.board');
 //--------Event Listeners--------
 init();
 boardEl.addEventListener('click', handleClick);
-// resetBtnEl.addEventListener('click', init)
+resetBtnEl.addEventListener('click', init);
 // squareEls.forEach(square => square.addEventListener('click', handleClick))
 //--------Functions-----------
 function init() {
@@ -70,10 +70,15 @@ function handleClick(evt) {
         return;
     let sqIdx = parseInt(evt.target.id.slice(2));
     placePiece(sqIdx);
-    // checkForTie()
+    checkForTie();
     checkForWinner();
     switchPlayerTurn();
     render();
+}
+function checkForTie() {
+    if (!board.includes(0)) {
+        tie = true;
+    }
 }
 function placePiece(idx) {
     board[idx] = turn;

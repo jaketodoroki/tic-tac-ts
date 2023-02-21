@@ -22,14 +22,14 @@ let tie: boolean
 
 const squareEls = document.querySelectorAll<HTMLDivElement>('.sqr')
 const messageEl = document.getElementById('message') as HTMLElement
-const resetBtnEl = document.querySelector<HTMLButtonElement>('#reset-button')!
+const resetBtnEl = document.getElementById('reset') as HTMLButtonElement
 const boardEl = document.querySelector<HTMLElement>('.board')!
 
 
 //--------Event Listeners--------
 init()
 boardEl.addEventListener('click', handleClick)
-// resetBtnEl.addEventListener('click', init)
+resetBtnEl.addEventListener('click', init)
 
 // squareEls.forEach(square => square.addEventListener('click', handleClick))
 
@@ -77,10 +77,16 @@ function handleClick(evt: MouseEvent): void {
   if (winner === true || tie === true) return
   let sqIdx: number = parseInt(evt.target.id.slice(2))
   placePiece(sqIdx)
-  // checkForTie()
+  checkForTie()
   checkForWinner()
   switchPlayerTurn()
   render()
+}
+
+function checkForTie(): void {
+  if (!board.includes(0)) {
+    tie = true
+  }
 }
 
 function placePiece(idx: number): void {
