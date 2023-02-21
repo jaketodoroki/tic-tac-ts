@@ -21,3 +21,5 @@ let tie: boolean
 //-------Cached Element References----
 
 const squareEls = document.querySelectorAll<HTMLButtonElement>('.sqr')
+const messageEl = document.getElementById('message') as HTMLElement
+const resetBtnEl = document.querySelector<HTMLButtonElement>('#reset-button')!
