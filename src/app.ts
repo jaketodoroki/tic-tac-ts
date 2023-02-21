@@ -45,10 +45,18 @@ function init(): void {
 
 function render(): void {
   updateBoard()
-  // updateMessage()
+  updateMessage()
 }
 
-
+function updateMessage(): void {
+  if(!winner && !tie) {
+    messageEl!.textContent = `It's ${turn === 1 ? 'O':'X'}'s turn`
+  } else if (!winner && tie ) {
+    messageEl!.textContent = 'TIE'
+  } else {
+    messageEl!.textContent = `Congrats! ${turn === 1 ? 'O':'X'} wins!!`
+  } 
+}
 
 function updateBoard(){
   squareEls.forEach((square, idx) => {

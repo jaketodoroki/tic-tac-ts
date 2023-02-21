@@ -35,7 +35,18 @@ function init() {
 }
 function render() {
     updateBoard();
-    // updateMessage()
+    updateMessage();
+}
+function updateMessage() {
+    if (!winner && !tie) {
+        messageEl.textContent = `It's ${turn === 1 ? 'O' : 'X'}'s turn`;
+    }
+    else if (!winner && tie) {
+        messageEl.textContent = 'TIE';
+    }
+    else {
+        messageEl.textContent = `Congrats! ${turn === 1 ? 'O' : 'X'} wins!!`;
+    }
 }
 function updateBoard() {
     squareEls.forEach((square, idx) => {
