@@ -71,10 +71,15 @@ function handleClick(evt: MouseEvent): void {
   placePiece(sqIdx)
   // checkForTie()
   // checkForWinner()
-  // switchPlayerTurn()
+  switchPlayerTurn()
   render()
 }
 
 function placePiece(idx: number): void {
   board[idx] = turn
+}
+
+function switchPlayerTurn(): void {
+  if(winner === true || tie === true) return
+  turn *= -1
 }

@@ -61,9 +61,14 @@ function handleClick(evt) {
     placePiece(sqIdx);
     // checkForTie()
     // checkForWinner()
-    // switchPlayerTurn()
+    switchPlayerTurn();
     render();
 }
 function placePiece(idx) {
     board[idx] = turn;
+}
+function switchPlayerTurn() {
+    if (winner === true || tie === true)
+        return;
+    turn *= -1;
 }
